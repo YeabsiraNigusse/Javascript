@@ -12,11 +12,10 @@ console.log(score)
 getScoreText(undefined,99)
 
 //challenge area
-
-
-let getTip = function(total, tip = 0.2){
+let getTip = function(total, tip = 0.25){
     let result = total*tip
-    return result
+    let percent = tip*100
+    return `A ${percent}% tip on $${total} would be ${result}`
 }
-let tip = getTip(100)
+let tip = getTip(40)
 console.log(tip)
