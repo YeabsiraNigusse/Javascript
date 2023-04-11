@@ -27,3 +27,16 @@ let booksummery = GetSummery(mybook)
 console.log(booksummery.pageCountSummery)
 
 // challenge area
+
+//creat an object that take a faranite and return all three
+
+let getTemprature = function(faranite){
+    return {
+        faranite: faranite,
+        kalvin: ((faranite - 32)*5/9) + 273.15,
+        clecious: (faranite - 32)*5/9
+    }
+}
+let mytemp = getTemprature(32)
+console.log(mytemp.clecious)
+console.log(mytemp.kalvin)
