@@ -1,5 +1,5 @@
-let GradeCalculeter = function(score, total){
-    let grade = (score/total)*100
+const GradeCalculeter = function(score, total){
+    const grade = (score/total)*100
 
     if (grade >= 90 && grade <= 100){
         return `${score}/${total} -> You got a A (${grade}%)!`
@@ -17,5 +17,5 @@ let GradeCalculeter = function(score, total){
         return `${score}/${total} -> You got a F (${grade}%)!`
     }
 }
-let result = GradeCalculeter(13,20)
+const result = GradeCalculeter(13,20)
 console.log(result)
