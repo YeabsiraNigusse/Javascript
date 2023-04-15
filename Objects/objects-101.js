@@ -1,4 +1,4 @@
-let mybook = {
+let mybook = {//object declaration
     title: '1984',
     author: 'George orwell',
     pageCount: 326

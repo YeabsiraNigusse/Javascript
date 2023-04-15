@@ -6,7 +6,6 @@ let myaccount = {
 
 let addExpense = function (account, amount){
     account.expenses = account.expenses + amount
-    
 }
 
 // addIncome
