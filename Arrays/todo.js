@@ -56,8 +56,8 @@ const deletText = function(todo, text){
 }
 
 const DeletText = function(todo, text){
-    const index = todo.findIndex(function (to, index){
-        return to.text.toLowerCase() === text.toLowerCase()
+    const index = todo.findIndex(function (to, index){// function that return index of the matched text
+        return to.text.toLowerCase() === text.toLowerCase()//filtering function for matching text
     })
     if (index != undefined){
        todo.splice(index, 1)
@@ -68,9 +68,24 @@ const DeletText = function(todo, text){
 // console.log(todos)
 
 const getThingsToDo = function(todos){
-    return todos.filter(function(todo){
-       return  todo.completed === false
+    return todos.filter(function(todo){// filtering arrays with specific condition
+       return  todo.completed === false// in this case todos that are not completed
     })
 }
 
 console.log(getThingsToDo(todos))
+
+const sortTodos = function(todos){
+    return todos.sort(function(a, b){
+        if (a.completed > b.completed){
+            return 1
+        }else if(a.completed < b.completed){
+            return -1
+        }else{
+            return 0
+        }
+    })
+}
+
+console.log(sortTodos(todos))
+

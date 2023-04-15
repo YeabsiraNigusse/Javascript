@@ -21,7 +21,7 @@ const findeNote = function (note, noteTitle){
      return note[index]
 }
 
-console.log(notes)
+//console.log(notes)
 
 // console.log(notes.length)
 
@@ -36,22 +36,37 @@ console.log(notes)
 //console.log(notes)
 //notes.splice(0,0, 'Note 1 is back')//so i can remove whate ever i want and enter whatevet i need
 
-console.log(notes)
+//console.log(notes)
 //notes.splice(0, 2, 'whare are you Note')
 //remove the first two and enter at first position
-console.log(notes)
+//console.log(notes)
 
 //remove note 3 and 4 and insert at note 1
 notes.splice(2, 2, 'who is removed')
 
-console.log(notes)
+//console.log(notes)
 
 // notes.splice() mainly remove item from specific index and upto specified index sequencially
 // can also insert value to the start of removed value
 
 
-notes.forEach(function (item, index){
-     console.log(index)
-     console.log(item)
-})
-console.log(note)
+// notes.forEach(function (item, index){
+//      console.log(index)
+//      console.log(item)
+// })
+//console.log(note)
+sortNotes = function(notes){
+     return notes.sort(function (a, b){
+          if (a.title.toLowerCase() < b.title.toLowerCase()){
+               return -1
+          }else if(a.title.toLowerCase() > b.title.toLowerCase){
+               return 1
+          }else{
+               return 0
+          }
+     })
+}
+
+console.log(sortNotes(note))
+
+console.log(false > true)
