@@ -27,3 +27,50 @@ todo.forEach(function(item, index){
 // for(let i =0; i<todo.length; i++){
 //     console.log(`${i+1}, ${todo[i]}`)
 // }
+const todos = [
+    {
+        text: 'Finish Array section of Javascript bootcamp',
+        completed: false
+    },
+    {
+        text: 'Read Bible',
+        completed: true
+    },
+    {
+        text: 'Eat Lunch',
+        completed: true
+    },
+    {
+        text: 'study haskell',
+        completed: false
+    }
+]
+
+const deletText = function(todo, text){
+    const index = todo.findIndex(function (to, index){
+        return to.text == text
+    })
+    if (index != undefined){
+       todo.splice(index, 1)
+    }
+}
+
+const DeletText = function(todo, text){
+    const index = todo.findIndex(function (to, index){
+        return to.text.toLowerCase() === text.toLowerCase()
+    })
+    if (index != undefined){
+       todo.splice(index, 1)
+    }
+}
+// console.log(todos)
+// DeletText(todos, 'Haskell Journy')
+// console.log(todos)
+
+const getThingsToDo = function(todos){
+    return todos.filter(function(todo){
+       return  todo.completed === false
+    })
+}
+
+console.log(getThingsToDo(todos))
