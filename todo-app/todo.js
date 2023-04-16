@@ -65,4 +65,11 @@ todos.forEach(function(todo){
 
 // console.log(todos[0])
 
+// document.querySelector('button').addEventListener('click', function(){// adding event listener for button click
+//     console.log('You added todo')
+// })
+
+document.querySelector('#add-todo').addEventListener('click', function(){
+    console.log('adding todos')
+})
 
