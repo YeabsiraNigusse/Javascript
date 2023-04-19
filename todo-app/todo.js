@@ -43,7 +43,7 @@ message.textContent = `You have ${incompleteTask(todos)} todos left`
 document.querySelector('body').appendChild(message)
 
 todos.forEach(function(todo){// THIS IS POWERFULL
-    const p = document.createElement('p')// WE ARE ABLE TO CREAT AN ELEMENT WE WANT AND INSERT OUR VALUE INTO IT
+    const p = document.createElement('p')// WE ARE ABLE TO CREAT AN ELEMENT WE WANT AND INSERT OUR VALUE INTO IT BROWSER(HOW ABOUT THAT)
     p.textContent = todo.text
     document.querySelector('body').append(p)// INSERTING PARAGRAPH ELEMENT AND ADDING OBJECT VALUE INTO IT
 })
@@ -77,14 +77,22 @@ document.querySelector('#add-todo').addEventListener('click', function(){
 document.querySelector('#add-todo-input').addEventListener('input', function(e){
     console.log(e.target.value) // RECIVING INPUT FROM THE USER
 })
-
 // IMPORTANT
 // -- TEXT CONTENT IS USED TO GET CONTENTS OF ELEMENTS
 // -- VALUE IS USED TO GET CONTENTS OF USER INPUT 
 
 
 // my challenge if not given
-// at this point you can recive todo from the user and append it to the brouser
+// at this point you can recive todo from the user and append it to the browser
 // read input from the input when add todo button is clicked and append the result value to the browser
+
+document.querySelector('#add-todo-input').addEventListener('change', function(e){
+    document.querySelector('#add-todo').addEventListener('click', function(){
+        const content = e.target.value
+        const p = document.createElement('p')
+        p.textContent = content
+        document.querySelector('body').append(p)
+    })
+})
 
 // rendering data
