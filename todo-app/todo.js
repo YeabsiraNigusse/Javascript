@@ -42,11 +42,12 @@ const message = document.createElement('h2')
 message.textContent = `You have ${incompleteTask(todos)} todos left`
 document.querySelector('body').appendChild(message)
 
-todos.forEach(function(todo){
-    const p = document.createElement('p')
+todos.forEach(function(todo){// THIS IS POWERFULL
+    const p = document.createElement('p')// WE ARE ABLE TO CREAT AN ELEMENT WE WANT AND INSERT OUR VALUE INTO IT
     p.textContent = todo.text
-    document.querySelector('body').append(p)
+    document.querySelector('body').append(p)// INSERTING PARAGRAPH ELEMENT AND ADDING OBJECT VALUE INTO IT
 })
+
 // const p1 = document.createElement('p')
 // p1.textContent = todos[0].text
 // document.querySelector('body').append(p1)
@@ -72,4 +73,18 @@ todos.forEach(function(todo){
 document.querySelector('#add-todo').addEventListener('click', function(){
     console.log('adding todos')
 })
+// add to do input and print to the console
+document.querySelector('#add-todo-input').addEventListener('input', function(e){
+    console.log(e.target.value) // RECIVING INPUT FROM THE USER
+})
 
+// IMPORTANT
+// -- TEXT CONTENT IS USED TO GET CONTENTS OF ELEMENTS
+// -- VALUE IS USED TO GET CONTENTS OF USER INPUT 
+
+
+// my challenge if not given
+// at this point you can recive todo from the user and append it to the brouser
+// read input from the input when add todo button is clicked and append the result value to the browser
+
+// rendering data

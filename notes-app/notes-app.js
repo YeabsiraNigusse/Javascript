@@ -21,3 +21,48 @@
 document.querySelector('button').addEventListener('click', function(){
     console.log('You clicked the Button')
 })
+
+// How do we recive an input from the browser inserted by the user
+// by adding input event listener
+
+const note = [
+    {
+       title: 'My haskell Journy',
+       body: 'learning building projects'
+    }, {
+       title: 'my javascript learning journy',
+       body: 'finished learning basics'
+    }, {
+        title: 'fellowship status',
+        body: 'still serving fellow'
+    }, {
+         title: 'class has been started',
+         body: 'next week we have exam preparation'
+    }]
+const filters = {
+    selectedtext: ''
+}
+// rendering notes take notes and text it is filtered
+// step 1 - filtering notes(arrays) that only contain that text
+
+const renderNotes = function(notes, filters){
+    const filteredNotes = notes.filter(function(note){
+        return note.title.toLowerCase().includes(filters.selectedtext.toLowerCase())
+    })
+
+    document.querySelector('#notes').innerHTML = ''
+    //console.log(filteredNotes)
+    filteredNotes.forEach(function(note){
+        const noteEle = document.createElement('p')
+        noteEle.textContent = note.title
+        document.querySelector('#notes').appendChild(noteEle)
+    })
+}
+renderNotes(note, filters)
+
+// step 2- getting the text from the user input
+
+document.querySelector('#search-text').addEventListener('input', function(e){
+    filters.selectedtext = e.target.value
+    renderNotes(note, filters)
+})
