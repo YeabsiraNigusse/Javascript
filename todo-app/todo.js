@@ -86,13 +86,13 @@ document.querySelector('#add-todo-input').addEventListener('input', function(e){
 // at this point you can recive todo from the user and append it to the browser
 // read input from the input when add todo button is clicked and append the result value to the browser
 
-document.querySelector('#add-todo-input').addEventListener('change', function(e){
-    document.querySelector('#add-todo').addEventListener('click', function(){
-        const content = e.target.value
-        const p = document.createElement('p')
-        p.textContent = content
-        document.querySelector('body').append(p)
-    })
-})
+// document.querySelector('#add-todo-input').addEventListener('change', function(e){
+//     document.querySelector('#add-todo').addEventListener('click', function(){
+//         const content = e.target.value
+//         const p = document.createElement('p')
+//         p.textContent = content
+//         document.querySelector('body').append(p)
+//     })
+// })
 
 // rendering data
