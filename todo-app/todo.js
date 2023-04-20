@@ -89,11 +89,13 @@ const todos = [
 // APPEND FILTERED ARRAY INTO THE BROWSER BY CREATING PRAGRAPH TAG(USE INNERHTML)
 // WRITE USER INPUT LISTNER AND RENDER THE FILTERED TODOS
 filters = {
-    searchedText: ''
+    searchedText: '',
+    hideCompleted: false
 }
+
 filteredTodos = function(todos, filters){
     const filterd = todos.filter(function(todo){
-        return todo.text.toLowerCase().includes(filters.searchedText.toLowerCase())
+       return todo.text.toLowerCase().includes(filters.searchedText.toLowerCase()) && (!todo.completed || filters.hideCompleted)
     })
 
     let incompleteTask = function(){
@@ -125,11 +127,26 @@ document.querySelector('#add-todo-input').addEventListener('input', function(e){
     filteredTodos(todos, filters)
 })
 
+
 // PREPARE FORM WITH INPUT AND BUTTON ELEMENT(DONT FORGET NAME, PLACEHOLDER, TEXT)
 // PREPARE EVENT LISTNER OF THE FORM USING BY ITS ID AND SUBMIT TYPE
 // CALL PREVENTDEFAULT METHOD AND ASSIGN EMPTY VALUE INTO THE INPUT PLACE
 
 document.querySelector('#todo-form').addEventListener('submit', function(e){
     e.preventDefault()
+
+        todos.push({
+            text: e.target.elements.AddTodo.value,
+            completed: false
+        })
+    filteredTodos(todos, filters)
     e.target.elements.AddTodo.value = ''
+})
+document.querySelector('#checkbox').addEventListener('change' , function(e){
+    if (e.target.checked){
+        filters.hideCompleted = false
+    }else{
+        filters.hideCompleted = true
+    }
+    filteredTodos(todos, filters)
 })
