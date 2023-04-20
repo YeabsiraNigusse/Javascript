@@ -58,13 +58,13 @@ const todos = [
 //     console.log('You added todo')
 // })
 
-document.querySelector('#add-todo').addEventListener('click', function(){
-    console.log('adding todos')
-})
-// add to do input and print to the console
-document.querySelector('#add-todo-input').addEventListener('input', function(e){
-    console.log(e.target.value) // RECIVING INPUT FROM THE USER
-})
+// document.querySelector('#add-todo').addEventListener('click', function(){
+//     console.log('adding todos')
+// })
+// // add to do input and print to the console
+// document.querySelector('#add-todo-input').addEventListener('input', function(e){
+//     console.log(e.target.value) // RECIVING INPUT FROM THE USER
+// })
 // IMPORTANT
 // -- TEXT CONTENT IS USED TO GET CONTENTS OF ELEMENTS
 // -- VALUE IS USED TO GET CONTENTS OF USER INPUT 
@@ -123,4 +123,13 @@ filteredTodos(todos, filters)
 document.querySelector('#add-todo-input').addEventListener('input', function(e){
     filters.searchedText = e.target.value
     filteredTodos(todos, filters)
+})
+
+// PREPARE FORM WITH INPUT AND BUTTON ELEMENT(DONT FORGET NAME, PLACEHOLDER, TEXT)
+// PREPARE EVENT LISTNER OF THE FORM USING BY ITS ID AND SUBMIT TYPE
+// CALL PREVENTDEFAULT METHOD AND ASSIGN EMPTY VALUE INTO THE INPUT PLACE
+
+document.querySelector('#todo-form').addEventListener('submit', function(e){
+    e.preventDefault()
+    e.target.elements.AddTodo.value = ''
 })
