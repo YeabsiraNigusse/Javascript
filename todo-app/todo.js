@@ -29,24 +29,12 @@ const todos = [
 // you have 2 todos left(p element)
 // add a p for each todo above(use text value)
 
-let incompleteTask = function(todos){
-    let count = 0
-    todos.forEach(function(todo){
-        if (todo.completed === false){
-            count = count + 1
-        }
-    })
-    return count
-}
-const message = document.createElement('h2')
-message.textContent = `You have ${incompleteTask(todos)} todos left`
-document.querySelector('body').appendChild(message)
 
-todos.forEach(function(todo){// THIS IS POWERFULL
-    const p = document.createElement('p')// WE ARE ABLE TO CREAT AN ELEMENT WE WANT AND INSERT OUR VALUE INTO IT BROWSER(HOW ABOUT THAT)
-    p.textContent = todo.text
-    document.querySelector('body').append(p)// INSERTING PARAGRAPH ELEMENT AND ADDING OBJECT VALUE INTO IT
-})
+// todos.forEach(function(todo){// THIS IS POWERFULL
+//     const p = document.createElement('p')// WE ARE ABLE TO CREAT AN ELEMENT WE WANT AND INSERT OUR VALUE INTO IT BROWSER(HOW ABOUT THAT)
+//     p.textContent = todo.text
+//     document.querySelector('body').append(p)// INSERTING PARAGRAPH ELEMENT AND ADDING OBJECT VALUE INTO IT
+// })
 
 // const p1 = document.createElement('p')
 // p1.textContent = todos[0].text
@@ -96,3 +84,43 @@ document.querySelector('#add-todo-input').addEventListener('input', function(e){
 // })
 
 // rendering data
+
+// WRITE A FUNCTION THAT FILTERS A TODO FROM AN ARRAY BASED ON INPUT TEXT
+// APPEND FILTERED ARRAY INTO THE BROWSER BY CREATING PRAGRAPH TAG(USE INNERHTML)
+// WRITE USER INPUT LISTNER AND RENDER THE FILTERED TODOS
+filters = {
+    searchedText: ''
+}
+filteredTodos = function(todos, filters){
+    const filterd = todos.filter(function(todo){
+        return todo.text.toLowerCase().includes(filters.searchedText.toLowerCase())
+    })
+
+    let incompleteTask = function(){
+        let count = 0
+        filterd.forEach(function(todo){
+            if (todo.completed === false){
+                count = count + 1
+            }
+        })
+        return count
+    }
+    document.querySelector('#todo-div').innerHTML = ''
+
+    const message = document.createElement('h2')
+    message.textContent = `You have ${incompleteTask()} todos left`
+    document.querySelector('#todo-div').appendChild(message)
+
+    filterd.forEach(function(todos){
+        const newEle = document.createElement('p')
+        newEle.textContent = todos.text
+        document.querySelector('#todo-div').appendChild(newEle)
+    })
+}
+
+filteredTodos(todos, filters)
+
+document.querySelector('#add-todo-input').addEventListener('input', function(e){
+    filters.searchedText = e.target.value
+    filteredTodos(todos, filters)
+})
