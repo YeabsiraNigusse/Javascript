@@ -64,7 +64,7 @@ if (localTodo !==null){
 
 filteredTodos = function(todos, filters){// this is the function that filters based on the text input
     const filterd = todos.filter(function(todo){
-       return todo.text.toLowerCase().includes(filters.searchedText.toLowerCase()) && (!todo.completed || filters.hideCompleted)
+       return todo.text.toLowerCase().includes(filters.searchedText.toLowerCase())
     })
 
     let incompleteTask = function(){
@@ -93,15 +93,6 @@ filteredTodos = function(todos, filters){// this is the function that filters ba
     })
 }
 
-filteredTodos(todos, filters)
-document.querySelector('#checkbox').addEventListener('change' , function(e){
-    if (e.target.checked){
-        filters.hideCompleted = false
-    }else{
-        filters.hideCompleted = true
-    }
-    filteredTodos(todos, filters)
-})
 document.querySelector('#add-todo-input').addEventListener('input', function(e){// learning listning input form
     filters.searchedText = e.target.value
     filteredTodos(todos, filters) // calling filteredtodo with updated user input
@@ -115,7 +106,7 @@ document.querySelector('#todo-form').addEventListener('submit', function(e){// l
     e.preventDefault()
 
         todos.push({// this eventlistner recive user todos  from the user and append it to the todos list by using submit button
-            text: '',
+            text: e.target.elements.AddTodo.value,
             completed: false
         })
         localStorage.setItem('todos', JSON.stringify(todos))
