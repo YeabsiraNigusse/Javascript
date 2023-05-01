@@ -1,21 +1,4 @@
-const todos = [
-    {
-        text: 'Finish DOM section of Javascript bootcamp',
-        completed: false
-    },
-    {
-        text: 'Take Shower',
-        completed: true
-    },
-    {
-        text: 'celebrate Ester',
-        completed: true
-    },
-    {
-        text: 'study haskell',
-        completed: false
-    }
-]
+let todos = []
 
 // const ps = document.querySelectorAll('p')
 
@@ -35,24 +18,6 @@ const todos = [
 //     p.textContent = todo.text
 //     document.querySelector('body').append(p)// INSERTING PARAGRAPH ELEMENT AND ADDING OBJECT VALUE INTO IT
 // })
-
-// const p1 = document.createElement('p')
-// p1.textContent = todos[0].text
-// document.querySelector('body').append(p1)
-
-// const p2 = document.createElement('p')
-// p2.textContent = todos[1].text
-// document.querySelector('body').append(p2)
-
-// const p3 = document.createElement('p')
-// p3.textContent = todos[2].text
-// document.querySelector('body').append(p3)
-
-// const p4 = document.createElement('p')
-// p4.textContent = todos[3].text
-// document.querySelector('body').append(p4)
-
-// console.log(todos[0])
 
 // document.querySelector('button').addEventListener('click', function(){// adding event listener for button click
 //     console.log('You added todo')
@@ -92,8 +57,12 @@ filters = {
     searchedText: '',
     hideCompleted: false
 }
+const localTodo = localStorage.getItem('todos')
+if (localTodo !==null){
+    todos = JSON.parse(localTodo)
+}
 
-filteredTodos = function(todos, filters){
+filteredTodos = function(todos, filters){// this is the function that filters based on the text input
     const filterd = todos.filter(function(todo){
        return todo.text.toLowerCase().includes(filters.searchedText.toLowerCase()) && (!todo.completed || filters.hideCompleted)
     })
@@ -102,7 +71,7 @@ filteredTodos = function(todos, filters){
         let count = 0
         filterd.forEach(function(todo){
             if (todo.completed === false){
-                count = count + 1
+                count = count + 1 // this is for to know how match todos left
             }
         })
         return count
@@ -110,38 +79,21 @@ filteredTodos = function(todos, filters){
     document.querySelector('#todo-div').innerHTML = ''
 
     const message = document.createElement('h2')
-    message.textContent = `You have ${incompleteTask()} todos left`
+    message.textContent = `You have ${incompleteTask()} todos left`// this is appending h2 to our browser
     document.querySelector('#todo-div').appendChild(message)
 
     filterd.forEach(function(todos){
-        const newEle = document.createElement('p')
-        newEle.textContent = todos.text
+        const newEle = document.createElement('p')// this is appending the filtered todos
+        if (todos.text.length > 0){
+            newEle.textContent = todos.text
+        }else{
+            newEle.textContent = 'Unnamed todo'
+        }
         document.querySelector('#todo-div').appendChild(newEle)
     })
 }
 
 filteredTodos(todos, filters)
-
-document.querySelector('#add-todo-input').addEventListener('input', function(e){
-    filters.searchedText = e.target.value
-    filteredTodos(todos, filters)
-})
-
-
-// PREPARE FORM WITH INPUT AND BUTTON ELEMENT(DONT FORGET NAME, PLACEHOLDER, TEXT)
-// PREPARE EVENT LISTNER OF THE FORM USING BY ITS ID AND SUBMIT TYPE
-// CALL PREVENTDEFAULT METHOD AND ASSIGN EMPTY VALUE INTO THE INPUT PLACE
-
-document.querySelector('#todo-form').addEventListener('submit', function(e){
-    e.preventDefault()
-
-        todos.push({
-            text: e.target.elements.AddTodo.value,
-            completed: false
-        })
-    filteredTodos(todos, filters)
-    e.target.elements.AddTodo.value = ''
-})
 document.querySelector('#checkbox').addEventListener('change' , function(e){
     if (e.target.checked){
         filters.hideCompleted = false
@@ -150,3 +102,45 @@ document.querySelector('#checkbox').addEventListener('change' , function(e){
     }
     filteredTodos(todos, filters)
 })
+document.querySelector('#add-todo-input').addEventListener('input', function(e){// learning listning input form
+    filters.searchedText = e.target.value
+    filteredTodos(todos, filters) // calling filteredtodo with updated user input
+})
+
+// PREPARE FORM WITH INPUT AND BUTTON ELEMENT(DONT FORGET NAME, PLACEHOLDER, TEXT)
+// PREPARE EVENT LISTNER OF THE FORM USING BY ITS ID AND SUBMIT TYPE
+// CALL PREVENTDEFAULT METHOD AND ASSIGN EMPTY VALUE INTO THE INPUT PLACE
+
+document.querySelector('#todo-form').addEventListener('submit', function(e){// learning listning submit button
+    e.preventDefault()
+
+        todos.push({// this eventlistner recive user todos  from the user and append it to the todos list by using submit button
+            text: '',
+            completed: false
+        })
+        localStorage.setItem('todos', JSON.stringify(todos))
+    filteredTodos(todos, filters)
+    e.target.elements.AddTodo.value = ''
+})
+
+// localStorage.setItem('Name', 'Yeabsira')
+// //localStorage.removeItem('Name')
+// console.log(localStorage.getItem('Name'))
+// //localStorage.clear()
+
+// // local storage always support a string data. so what about array and object data(how do we store it using local storage)
+
+// const user ={
+//     name : 'Yeabsira',
+//     age: 21
+// }
+// const userJson = JSON.stringify(user)
+// console.log(userJson)
+// localStorage.setItem('user', userJson)
+
+// const userJSON = localStorage.getItem('user')
+// const getuser = JSON.parse(userJSON)
+// console.log(`${getuser.name} is ${getuser.age}`)
+
+
+
