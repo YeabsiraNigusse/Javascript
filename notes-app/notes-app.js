@@ -1,23 +1,17 @@
+// DOM -Document Object Model helps us to control elements in html document
 
-let note = getSavedNotes()
 
-const filters = {
-    selectedtext: ''
-}
+//quering and removing single element
+// const p = document.querySelector('p');
+// p.remove();
 
-renderNotes(note, filters)
-document.querySelector('#createNote').addEventListener('click', function (e){
-    note.push({
-        title : '',
-        body: ''
-    })
-    localStorage.setItem('notes', JSON.stringify(note))
-    renderNotes(note, filters)
+// Quering all element and reading their text content
+
+const ps = document.querySelectorAll('p');
+
+ps.forEach(function (p){
+    //read text content of each element
+    p.textContent = '********';
+    console.log(p.textContent);
 })
-// step 2- getting the text from the user input
-
-document.querySelector('#search-text').addEventListener('input', function(e){
-    filters.selectedtext = e.target.value
-    renderNotes(note, filters)
-})  
 
