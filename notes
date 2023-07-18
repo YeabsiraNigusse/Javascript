@@ -1,0 +1,2 @@
+foreach, find, findindex, filter need the array to function 
+and they take function as argument that makes them to have two return statements

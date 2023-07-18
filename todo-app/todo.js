@@ -34,9 +34,13 @@ todos.forEach(function (todo){
         remaining += 1;
     }
 })
-
+const getThingsTodo = function(todos){
+   return todos.filter(function (todo){
+        return !todo.completed
+    })
+}
 const p1 = document.createElement('h2');
-p1.textContent = `You have ${remaining} todos left`;
+p1.textContent = `You have ${getThingsTodo(todos).length} todos left`;
 document.querySelector('body').appendChild(p1);
 
 
@@ -46,4 +50,15 @@ todos.forEach(function (todo){
     let p = document.createElement('p');
     p.textContent = todo.text;
     document.querySelector('body').appendChild(p);
+})
+
+
+// handling user interaction
+
+document.querySelector('button').addEventListener('click',function (e){
+    console.log('learning about user interaction')
+})
+
+document.querySelector('#todo').addEventListener('click', function (e){
+    e.target.textContent = 'Clicked'
 })
