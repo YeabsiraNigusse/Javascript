@@ -25,3 +25,25 @@ const todos = [
         completed: false
     }
 ]
+
+// get things to do
+
+let remaining = 0
+todos.forEach(function (todo){
+    if (todo.completed == false){
+        remaining += 1;
+    }
+})
+
+const p1 = document.createElement('h2');
+p1.textContent = `You have ${remaining} todos left`;
+document.querySelector('body').appendChild(p1);
+
+
+// get every todos 
+
+todos.forEach(function (todo){
+    let p = document.createElement('p');
+    p.textContent = todo.text;
+    document.querySelector('body').appendChild(p);
+})
