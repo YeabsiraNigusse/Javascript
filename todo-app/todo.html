@@ -4,9 +4,16 @@
     <head>
     </head>
     <body>
-        <h1>Todos</h1>
-        
-         <button id="todo">Add Todo</button>
+        <h1 id="h2">Todos</h1>
+        <input type="text" placeholder="search Todo" id="search"><br>
+       <form id="add-form">
+        <input type="text" placeholder="Add New Todo" id="add-input" name="newTodo">
+        <button id="add-button" type="submit" value="Submit">Submit</button>
+       </form>
+         <div id="todo"></div>
+         <label>
+            <input type="checkbox" name="" id="checkbox">Hide Completed
+         </label>
         <script src="todos-function.js"></script>
         <script src="todo.js"></script>
     </body>

@@ -9,9 +9,9 @@
 
 const ps = document.querySelectorAll('p');
 
-ps.forEach(function (p){
-    //read text content of each element
-    p.textContent = '********';
-    console.log(p.textContent);
-})
+// ps.forEach(function (p){
+//     read text content of each element
+//     p.textContent = '********';
+//     console.log(p.textContent);
+// })
 
