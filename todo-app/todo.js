@@ -1,75 +1,35 @@
 //DOM - Document Objet Model
-const todos = [
-    {
-        text: 'Preparing for tomorrow',
-        completed: true
-    },
-    {
-        text: 'weaking up early morning and leave to work',
-        completed: false
-    },
-    {
-        text: 'read bible in the bus',
-        completed: false
-    },
-    {
-        text: 'take internship paper from head office',
-        completed: true
-    },
-    {
-        text:'take ATM card from the bank',
-        completed:true
-    },
-    {
-        text:'revise week 3 and week 4 plutus course at the work and come back home',
-        completed: false
-    }
-]
+let todos = []
 
-// get things to do
+//getting notes from local storage if there is any stored
 
-let remaining = 0
-todos.forEach(function (todo){
-    if (todo.completed == false){
-        remaining += 1;
-    }
-})
-const getThingsTodo = function(todos){
-   return todos.filter(function (todo){
-        return !todo.completed
-    })
+const storedTodos = localStorage.getItem('todos')
+if (storedTodos !== null){
+    todos = JSON.parse(storedTodos)
 }
-const p1 = document.createElement('h2');
-p1.textContent = `You have ${getThingsTodo(todos).length} todos left`;
-document.querySelector('#h2').appendChild(p1);
-
-
-// get every todos 
-
-// todos.forEach(function (todo){
-//     let p = document.createElement('p');
-//     p.textContent = todo.text;
-//     document.querySelector('body').appendChild(p);
-// })
 
 const filters = {
     searchtodo: '', 
     hideCompleted: false
 }
+
 const renderTodo = function(todos, filters){
     let filteredTodos = todos.filter(function (todo){
-        return todo.text.toLowerCase().includes(filters.searchtodo.toLowerCase())
-    })
-
-    filteredTodos = todos.filter(function (todo){
-        if (filters.hideCompleted){
-            return !todo.completed
-        }else{
-            return true
-        }
+        const searResult = todo.text.toLowerCase().includes(filters.searchtodo.toLowerCase())
+        const filteredResult = !filters.hideCompleted || !todo.completed
+        return searResult && filteredResult
     })
     //console.log(filteredTodos)
     document.querySelector('#todo').innerHTML = ''
+
+    const getThingsTodo = function(todos){
+        return todos.filter(function (todo){
+             return !todo.completed
+         })
+     }
+     const p1 = document.createElement('h2');
+     p1.textContent = `You have ${getThingsTodo(todos).length} todos left`;
+     document.querySelector('#todo').appendChild(p1);
 
     filteredTodos.forEach(function (todo){
         let newElem = document.createElement('p')
@@ -79,21 +39,27 @@ const renderTodo = function(todos, filters){
 }
 
 renderTodo(todos, filters) 
+
+
 // handling user interaction
 document.querySelector('#add-form').addEventListener('submit', function (e){//accessing a user data from a form
     e.preventDefault()
     //console.log(e.target.elements.newTodo.value)//helps to access specific finput of a form
-
-    todos.push({
-        text: e.target.elements.newTodo.value,
-        completed: false
-    })
+    if (e.target.elements.newTodo.value == ''){
+        console.log('enter some todos')
+    }else{
+        todos.push({
+            text: e.target.elements.newTodo.value,
+            completed: false
+        })
+    }
     
-    console.log(todos)
-    renderTodo(todos, filters) 
+    console.log(todos) 
+    localStorage.setItem('todos', JSON.stringify(todos))
+    renderTodo(todos, filters)
     e.target.elements.newTodo.value = ''
 })
- 
+
 document.querySelector('#search').addEventListener('input', function(e){
 
     filters.searchtodo = e.target.value
@@ -101,12 +67,7 @@ document.querySelector('#search').addEventListener('input', function(e){
     
 })
 document.querySelector('#checkbox').addEventListener('change', function (e){
-    console.log(e.target.checked)
-    if (e.target.checked == true){
-        filters.hideCompleted = true
-    }else{
-        filters.hideCompleted = false
-    }
+    filters.hideCompleted = e.target.checked
     renderTodo(todos, filters)
 
 })
