@@ -1,4 +1,5 @@
 //DOM - Document Objet Model
+
 const todos = getSavedTodos()
 
 const filters = {
@@ -16,6 +17,7 @@ document.querySelector('#add-form').addEventListener('submit', function (e){//ac
         console.log('enter some todos')
     }else{
         todos.push({
+            id: uuidv4(),
             text: e.target.elements.newTodo.value,
             completed: false
         })
