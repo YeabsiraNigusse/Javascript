@@ -40,13 +40,34 @@ const removeTodo = function (id){
         todos.splice(index, 1)
     }
 }
+
+const checkTodo = function (id){
+    const index = todos.findIndex(function (todo){
+        return todo.id == id 
+    })
+
+    if (index > -1){
+        if (todos[index].completed){
+          todos[index].completed = false
+        }else{
+            todos[index].completed = true
+        }
+    }
+}
  // show filtered todos in browser
 
  const getTodos = function (todo){
         const newElem = document.createElement('div')  
 
-        const input = document.createElement('input')// checkbox for each todo
-        input.setAttribute('type', 'checkbox')
+        const checkbox = document.createElement('input')// checkbox for each todo
+        checkbox.setAttribute('type', 'checkbox')
+        checkbox.checked = todo.completed
+        checkbox.addEventListener('click', function (e){
+           checkTodo(todo.id)
+           saveTodos(todos)
+           renderTodo(todos, filters)
+        })
+
 
         const text = document.createElement('span')// paragraph for each todo
         text.textContent = todo.text
@@ -59,7 +80,7 @@ const removeTodo = function (id){
             renderTodo(todos, filters)
         })
         
-        newElem.appendChild(input)
+        newElem.appendChild(checkbox)
         newElem.appendChild(text)
         newElem.appendChild(button)
         
