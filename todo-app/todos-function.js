@@ -9,7 +9,6 @@ const getSavedTodos = function (){
         return []
     }
 }
-
 // save todos
 
 const saveTodos = function(todos){
@@ -61,7 +60,7 @@ const checkTodo = function (id){
 
         const checkbox = document.createElement('input')// checkbox for each todo
         checkbox.setAttribute('type', 'checkbox')
-        checkbox.checked = todo.completed
+        checkbox.checked = todo.completed // retriving complition of todo from local storage
         checkbox.addEventListener('click', function (e){
            checkTodo(todo.id)
            saveTodos(todos)
@@ -75,7 +74,7 @@ const checkTodo = function (id){
         const button = document.createElement('button') // button for each todo
         button.textContent = 'Remove'
         button.addEventListener('click', function (e){
-            removeTodo(todo.id)
+           // removeTodo(todo.id)
             saveTodos(todos)
             renderTodo(todos, filters)
         })

@@ -67,6 +67,11 @@ sortNotes = function(notes){
      })
 }
 
-console.log(sortNotes(note))
+//console.log(sortNotes(note))
 
 console.log(false > true)
+
+
+let some = new Date('January 1 1970 00:00:00')
+let timestamp = some.getTime()
+console.log(timestamp)
