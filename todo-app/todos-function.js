@@ -1,6 +1,6 @@
 // getting todos from local storage
 
-const getSavedTodos = function (){
+const getSavedTodos = () => {
     const todoJson = localStorage.getItem('todos')
 
     if (todoJson !== null){
@@ -11,26 +11,26 @@ const getSavedTodos = function (){
 }
 // save todos
 
-const saveTodos = function(todos){
+const saveTodos = (todos) => {
     localStorage.setItem('todos', JSON.stringify(todos))
 }
 
 // getting remaining todos
 
-const getThingsTodo = function(todos){
+const getThingsTodo = (todos) => {
     return todos.filter(function (todo){
          return !todo.completed
      })
  }
 
  // show remaining todos in browser
- const showReaminingTodos = function (todos){
+ const showReaminingTodos = (todos) => {
     const p1 = document.createElement('h2');
      p1.textContent = `You have ${getThingsTodo(todos).length} todos left`;
      document.querySelector('#todo').appendChild(p1);
  }
 // remove todo
-const removeTodo = function (id){
+const removeTodo = (id) => {
     const index = todos.findIndex(function (todos){
         return todos.id == id
     })
@@ -40,10 +40,8 @@ const removeTodo = function (id){
     }
 }
 
-const checkTodo = function (id){
-    const index = todos.findIndex(function (todo){
-        return todo.id == id 
-    })
+const checkTodo = (id) => {
+    const index = todos.findIndex((todo) => todo.id == id)
 
     if (index > -1){
         if (todos[index].completed){
@@ -55,7 +53,7 @@ const checkTodo = function (id){
 }
  // show filtered todos in browser
 
- const getTodos = function (todo){
+ const getTodos = (todo) => {
         const newElem = document.createElement('div')  
 
         const checkbox = document.createElement('input')// checkbox for each todo
@@ -74,7 +72,7 @@ const checkTodo = function (id){
         const button = document.createElement('button') // button for each todo
         button.textContent = 'Remove'
         button.addEventListener('click', function (e){
-           // removeTodo(todo.id)
+            removeTodo(todo.id)
             saveTodos(todos)
             renderTodo(todos, filters)
         })
@@ -87,17 +85,16 @@ const checkTodo = function (id){
         
         
  }
- const getFilteredTodos = function (todos, filters){
-    return todos.filter(function (todo){
+ const getFilteredTodos = (todos, filters) => todos.filter((todo) => {
         const searResult = todo.text.toLowerCase().includes(filters.searchtodo.toLowerCase())
         const filteredResult = !filters.hideCompleted || !todo.completed
         
         return searResult && filteredResult
     })
- }
+ 
 
 
- const renderTodo = function(todos, filters){
+ const renderTodo = (todos, filters) => {
     let filteredTodos = getFilteredTodos(todos, filters)
     
     document.querySelector('#todo').innerHTML = ''
