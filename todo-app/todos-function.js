@@ -1,13 +1,14 @@
-// getting todos from local storage
+'use strict'
 
+// getting todos from local storage
 const getSavedTodos = () => {
     const todoJson = localStorage.getItem('todos')
 
-    if (todoJson !== null){
-        return JSON.parse(todoJson)
-    }else{
-        return []
-    }
+        try{
+            return todoJson ? JSON.parse(todoJson) : []
+        }catch(e){
+            return []
+        }
 }
 // save todos
 
