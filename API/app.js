@@ -25,11 +25,11 @@ app.post('/', function(req, res){
     const url = "https://api.openweathermap.org/data/2.5/weather?q="+cityName+"&appid=295bd2647e186f66f28ae38bc20cbe67&units=metric"
    
     https.get(url, function(response){   // get the response from the given url
-        console.log(response.statusCode)
+      //  console.log(response.statusCode)
 
         response.on('data', function(data){ // get the data from the response given
             const weatherData = JSON.parse(data) // parse the data into JSON format
-            console.log(weatherData.weather)
+            //console.log(weatherData.weather)
             const desc = weatherData.weather[0].description
             const temp = weatherData.main.temp
             const icon = weatherData.weather[0].icon
