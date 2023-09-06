@@ -24,8 +24,6 @@ Person.prototype.getBio = function (){
     return bio
 }
 
-
-
 const person1 = new Person('Yeab', 'lastName', 21, ['reading', 'codding'])
 person1.setName('Yeabsira Nigusse')
 console.log(person1.getBio())
