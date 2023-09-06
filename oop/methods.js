@@ -1,11 +1,11 @@
 
 
 const Person = function (firstName, lastName, age, likes = []){
-
     this.firstName = firstName
     this.lastName = lastName
     this.age = age
     this.likes = likes
+    
 }
 
 Person.prototype.setName = function(fullName){
