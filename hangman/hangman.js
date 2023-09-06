@@ -1,29 +1,18 @@
 
-const Hangman = function (word, remainingGusess){
-    this.word = word.toLowerCase().split('');
-    this.remainingGusess = remainingGusess;
-    this.gussedLetters = ['c']
-    
+displayPuzzle()
+displayRemaining()
+displayStatus()
 
-    Hangman.prototype.getPuzzle = function (){
-        let puzzle = ''
+window.addEventListener('keypress', function (e){
+    const guess = String.fromCharCode(e.charCode)
+    game1.makeGusses(guess)
+    console.log(game1.remainingGusess)
+     
+    document.querySelector('#puzzle').innerHTML = ''
 
-        this.word.forEach(letter => {
-            if (this.gussedLetters.includes(letter) || letter === ' '){
-                puzzle += letter
-            }else{
-                puzzle += '*'
-            }
-        });
-        return puzzle
-    }
-
+    displayStatus()
+    displayPuzzle()
+    displayRemaining()
    
-
-}
-
-const game1 = new Hangman('cat', 2)
-console.log(game1.getPuzzle())
-
-const game2 = new Hangman('Yeab Nigusse', 4)
-console.log(game2.getPuzzle())
+    
+})
