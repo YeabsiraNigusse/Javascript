@@ -1,6 +1,7 @@
 
 
-const Hangman = function (word, remainingGusess){
+class Hangman  {
+    constructor (word, remainingGusess){
     this.word = word.toLowerCase().split('');
     this.remainingGusess = remainingGusess;
     this.gussedLetters = []
@@ -8,7 +9,7 @@ const Hangman = function (word, remainingGusess){
 
 }
 
-Hangman.prototype.getPuzzle = function (){
+getPuzzle(){
     let puzzle = ''
 
     this.word.forEach(letter => {
@@ -21,7 +22,7 @@ Hangman.prototype.getPuzzle = function (){
     return puzzle
 }
 
-Hangman.prototype.makeGusses = function(gussedLetter){
+makeGusses(gussedLetter){
 
     if (this.status != 'failed'){
         const uniqeLetter = !this.gussedLetters.includes(gussedLetter)
@@ -33,12 +34,10 @@ Hangman.prototype.makeGusses = function(gussedLetter){
         if(uniqeLetter && inccorectGuss){
             this.remainingGusess--
         }
-    }
-
-    
+    }   
 }
 
-Hangman.prototype.checkStatus = function () {
+checkStatus() {
     const allFound = this.word.every((letter) => this.gussedLetters.includes(letter));
 
     if (allFound && this.status != 'failed') {
@@ -51,15 +50,10 @@ Hangman.prototype.checkStatus = function () {
 
     return this.status;
 };
-
-
+}
 
 
 const game1 = new Hangman('cat', 3)
-
-const game2 = new Hangman('Yeab Nigusse', 4)
-console.log(game2.getPuzzle())
-
 
 const displayPuzzle = function(){
     const puzzle = document.createElement('p')
@@ -67,14 +61,14 @@ const displayPuzzle = function(){
     document.querySelector('#puzzle').appendChild(puzzle)
 }
 
-const displayRemaining = function(){
+const displayRemaining = () =>{
 
     const remainingGusess = document.createElement('p')
     remainingGusess.textContent = `Remaining Gusses: ${game1.remainingGusess}`
     document.querySelector('#puzzle').appendChild(remainingGusess)
 }
 
-const displayStatus = function (){
+const displayStatus = () => {
 
     if (game1.remainingGusess == 0){
         const status = document.createElement('p')
@@ -87,7 +81,6 @@ const displayStatus = function (){
         status.textContent = `Great Work! You Gussed The word.`
         document.querySelector('#puzzle').appendChild(status)
     }
-    console.log(game1.checkStatus())
     
 }
 

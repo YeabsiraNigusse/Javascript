@@ -13,6 +13,5 @@ window.addEventListener('keypress', function (e){
     displayStatus()
     displayPuzzle()
     displayRemaining()
-   
-    
+
 })
