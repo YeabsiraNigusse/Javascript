@@ -38,7 +38,7 @@ makeGusses(gussedLetter){
 }
 
 checkStatus() {
-    const allFound = this.word.every((letter) => this.gussedLetters.includes(letter));
+    const allFound = this.word.every((letter) => this.gussedLetters.includes(letter) || letter === ' ');
 
     if (allFound && this.status != 'failed') {
         this.status = 'finished';
@@ -53,7 +53,7 @@ checkStatus() {
 }
 
 
-const game1 = new Hangman('cat', 3)
+const game1 = new Hangman('Yeab Nigusse', 3)
 
 const displayPuzzle = function(){
     const puzzle = document.createElement('p')
@@ -83,4 +83,6 @@ const displayStatus = () => {
     }
     
 }
+
+
 

@@ -15,3 +15,19 @@ window.addEventListener('keypress', function (e){
     displayRemaining()
 
 })
+const request = new XMLHttpRequest()
+
+request.addEventListener('readystatechange', (e) => {
+    if(e.target.readyState === 4 && e.target.status == 200){
+        
+        console.log(e.target)
+        const data = JSON.parse(e.target.responseText) 
+        console.log(data)
+        console.log(data[0].currencies.NPR.symbol);
+        console.log(e.target.status)
+    }
+})
+
+
+request.open('GET', 'https://restcountries.com/v3.1/all')
+request.send()
