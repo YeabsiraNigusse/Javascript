@@ -17,6 +17,7 @@ window.addEventListener('keypress', function (e){
 })
 const request = new XMLHttpRequest()
 
+countryCode = 'US'
 request.addEventListener('readystatechange', (e) => {
     if(e.target.readyState === 4 && e.target.status == 200){
         
@@ -24,6 +25,9 @@ request.addEventListener('readystatechange', (e) => {
         const data = JSON.parse(e.target.responseText) 
         console.log(data)
         console.log(data[0].currencies.NPR.symbol);
+        console.log(data[0].name.official);
+        const country = data.find((country) => country.cca2 === countryCode)
+        console.log(country.name)
         console.log(e.target.status)
     }
 })
