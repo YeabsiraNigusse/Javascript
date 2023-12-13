@@ -1,17 +1,17 @@
 
 
-const express = require('express')
-const https = require('https')
-const bodyParser = require('body-parser')
+const express = require('express') // setting express as required dependency
+const https = require('https') // setting https as required dependency
+const bodyParser = require('body-parser') // setting bodyparser as required dependency
 
 
 
-const app = express()
+const app = express() // initializing express object
 app.use(bodyParser.urlencoded({extended:true}))
 
-app.get('/', function(req, res){
+app.get('/', function(req, res){ // a function helps to respond when the specified localhost request is asked
     
-    res.status(200).sendFile(__dirname + "/index.html")
+    res.status(200).sendFile(__dirname + "/index.html") //respond with this file
 
 })
 
@@ -50,3 +50,9 @@ app.post('/', function(req, res){
 app.listen('3000', function(){
     console.log("server started at port 3000")
 })
+
+// basic steps to setup express server
+
+// install express 
+// initialize npm as a package using npm init command and finish the process
+// start writing code
